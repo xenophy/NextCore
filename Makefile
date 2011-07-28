@@ -8,7 +8,8 @@ TESTS = test/NX/*.test.js \
 		test/Function/*.test.js \
 		test/Number/*.test.js \
 		test/String/*.test.js \
-		test/Object/*.test.js
+		test/Object/*.test.js \
+		test/util/Format/*.test.js
 
 PREFIX = /usr/local
 LIB_PREFIX = $(HOME)/.node_libraries
