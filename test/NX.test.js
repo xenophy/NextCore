@@ -17,243 +17,359 @@ assert = require('assert');
 
 module.exports = {
 
-    // {{{ test apply#pattern1
+    // {{{ test namespace#standard
 
-    'test apply#pattern1': function() {
+    'test namespace#standard': function() {
 
-        var src = {}, ret;
+        NX.namespace(
+            'App',
+            'App.app',
+            'App.form',
+            'App.grid',
+            'App.tree'
+        );
 
-        ret = NX.apply(src, {
-            foo: 'bar'
+        assert.ok(App, 'Test create Namespace "App"');
+        assert.ok(App.app, 'Test create Namespace "App.app"');
+        assert.ok(App.form, 'Test create Namespace "App.form"');
+        assert.ok(App.grid, 'Test create Namespace "App.grid"');
+        assert.ok(App.tree, 'Test create Namespace "App.tree"');
+
+    },
+
+    // }}}
+    // {{{ test namespace#shorthand
+
+    'test namespace#shorthand': function() {
+
+        NX.ns(
+            'App',
+            'App.app',
+            'App.form',
+            'App.grid',
+            'App.tree'
+        );
+
+        assert.ok(App, 'Test create Namespace "App" with shorthand');
+        assert.ok(App.app, 'Test create Namespace "App.app" with shorthand');
+        assert.ok(App.form, 'Test create Namespace "App.form" with shorthand');
+        assert.ok(App.grid, 'Test create Namespace "App.grid" with shorthand');
+        assert.ok(App.tree, 'Test create Namespace "App.tree" with shorthand');
+
+    },
+
+    // }}}
+    // {{{ test define#pattern1
+
+    'test define#pattern1': function() {
+
+        /*
+         NX.define('NXTest.define.cls1', {
+            config: {
+                name: 'Awesome',
+                isAwesome: true
+            },
+            constructor: function(config) {
+                this.initConfig(config);
+                return this;
+            },
+            applyName : function(val) {
+                return "[" + val + "]";
+            }
         });
 
-        src.should.equal(ret);
-        src.foo.should.equal('bar');
-    },
+        var cls = new NXTest.define.cls1();
 
-    // }}}
-    // {{{ test apply#pattern2
+        cls.getName().should.equal('[Awesome]');
+        cls.getIsAwesome().should.equal(true);
+        cls.isAwesome.should.be.ok;
 
-    'test apply#pattern2': function() {
+        cls.setName('Next JS');
+        cls.getName().should.equal('[Next JS]');
 
-        var src = {}, contig, defaults, ret;
-
-        config = {
-            foo: 'bar'
-        };
-
-        defaults = {
-            foo: 'default value',
-            hoge: 'piyo'
-        };
-
-        ret = NX.apply(src, config, defaults);
-
-        src.should.equal(ret);
-        src.foo.should.equal('bar');
-        src.hoge.should.equal('piyo');
-    },
-
-    // }}}
-    // {{{ test applyIf#pattern1
-
-    'test applyIf#pattern1': function() {
-
-        var src, ret;
-
-        src = {
-            hoge: 'piyo'
-        };
-
-        ret = NX.applyIf(src, {
-            foo: 'bar'
+        cls.setConfig({
+            isAwesome: false
         });
 
-        assert.equal(src, ret, 'Test apply standard return value');
-        assert.equal(src.foo, 'bar', 'Test apply standard value bar');
-        assert.equal(src.hoge, 'piyo', 'Test apply standard value piyo');
+        cls.getIsAwesome().should.equal(false);
+        cls.isAwesome.should.not.be.ok;
+        */
+
     },
 
     // }}}
-    // {{{ test applyIf#pattern2
+    // {{{ test define#pattern2
 
-    'test applyIf#pattern2': function() {
+    'test define#pattern2': function() {
 
-        var src, config, ret;
+         NX.define('NXTest.define.cls2', {
+             config: {
+                 name: 'Awesome',
+                 isAwesome: true
+             },
+             constructor: function(config) {
+                 this.initConfig(config);
+                 return this;
+             },
+             applyName : function(val) {
+                 return "[" + val + "]";
+             }
+        });
 
-        src = {
-            foo: 'original'
+        NX.define('NXTest.define.cls3', {
+            extend: 'NXTest.define.cls2',
+            constructor : function() {
+                this.callParent(arguments);
+            }
+        });
+
+
+        var cls3 = new NXTest.define.cls3();
+
+        cls3.getName().should.equal('[Awesome]');
+        cls3.getIsAwesome().should.equal(true);
+
+        cls3.setName('Next JS');
+        cls3.getName().should.equal('[Next JS]');
+
+    },
+
+    // }}}
+    // {{{ test define#pattern3
+
+    'test define#pattern3': function() {
+
+         NX.define('NXTest.define.cls4', {
+             statics: {
+                 value: 123,
+                 func: function() {
+                     return 'foo';
+                 }
+             }
+         });
+         NXTest.define.cls4.value.should.equal(123);
+         NXTest.define.cls4.func().should.equal('foo');
+
+    },
+
+    // }}}
+    // {{{ test define#pattern4
+
+    'test define#pattern4': function() {
+
+        var f = function() {
         };
 
-        config = {
-            foo: 'bar'
+        NX.define('NXTest.define.cls5', {
+            extend: f
+        });
+
+        var cls = new NXTest.define.cls5();
+
+        NX.isFunction(cls.initConfig).should.be.ok;
+
+    },
+
+    // }}}
+    // {{{ test define#pattern5
+
+    'test define#pattern5': function() {
+
+        NX.define('NXTest.define.cls61', {
+            config: {
+                fee: 'baz'
+            },
+            foo: 'bar',
+            hoge: function() {
+                return 'hoge';
+            }
+        });
+
+        NX.define('NXTest.define.cls62', {
+            config: {
+                fee: 'boo'
+            },
+            mixins: [
+                'NXTest.define.cls61'
+            ]
+        });
+
+        var cls = new NXTest.define.cls62();
+
+        cls.hoge().should.equal('hoge');
+        cls.foo.should.equal('bar');
+        cls.config.fee.should.equal('boo');
+
+    },
+
+    // }}}
+    // {{{ test define#pattern6
+
+    'test define#pattern6': function() {
+
+        NX.define('NXTest.define.p6cls', {
+        });
+
+        NX.define('NXTest.define.p6cls2', {
+        });
+
+        NX.define('NXTest.define.p6cls3', {
+            mixins: {
+                '0': 'NXTest.define.p6cls',
+                '1': 'NXTest.define.p6cls2'
+            }
+        });
+
+    },
+
+    // }}}
+    // {{{ test iterate#standard
+
+    'test iterate#standard': function() {
+
+        var dest = {};
+        var src = {
+            key1: 'value1',
+            key2: 'value2',
+            key3: 'value3',
+            key4: 'value4',
+            key5: 'value5'
         };
 
-        ret = NX.applyIf(src, config);
+        NX.iterate(src, function(key, v, o) {
+            dest[key] = v;
+        });
 
-        assert.equal(src, ret, 'Test apply defaults return value');
-        assert.equal(src.foo, 'original', 'Test apply default key foo');
+        assert.equal(dest.key1, 'value1', 'Test key=key1 value=value1');
+        assert.equal(dest.key2, 'value2', 'Test key=key2 value=value2');
+        assert.equal(dest.key3, 'value3', 'Test key=key3 value=value3');
+        assert.equal(dest.key4, 'value4', 'Test key=key4 value=value4');
+        assert.equal(dest.key5, 'value5', 'Test key=key5 value=value5');
 
     },
 
     // }}}
-    // {{{ test clone#pattern1
+    // {{{ test iterate#empty
 
-    'test clone#pattern1': function() {
+    'test iterate#empty': function() {
 
-        var o, c;
-
-        o = {
-            src: 'src object'
+        var dest = {};
+        var src = {
+            key1: 'value1',
+            key2: 'value2',
+            key3: 'value3',
+            key4: 'value4',
+            key5: 'value5'
         };
 
-        c = NX.clone(o);
+        NX.iterate(undefined, function(key, v, o) {
+            dest[key] = v;
+        });
 
-        o.src.should.equal('src object');
-        c.src.should.equal('src object');
-
-        o.src = 'changed';
-
-        o.src.should.equal('changed');
-        c.src.should.equal('src object');
+        assert.equal(dest.key1, undefined, 'Test key=key1 value=undefined');
+        assert.equal(dest.key2, undefined, 'Test key=key2 value=undefined');
+        assert.equal(dest.key3, undefined, 'Test key=key3 value=undefined');
+        assert.equal(dest.key4, undefined, 'Test key=key4 value=undefined');
+        assert.equal(dest.key5, undefined, 'Test key=key5 value=undefined');
 
     },
 
     // }}}
-    // {{{ test clone#pattern2
+    // {{{ test iterate#iterable
 
-    'test clone#pattern2': function() {
+    'test iterate#iterable': function() {
 
-        var o, c;
-
-        o = function() {
-            return 'original';
+        var dest = [];
+        var src = {
+            key1: 'value1',
+            key2: 'value2',
+            key3: 'value3',
+            key4: 'value4',
+            key5: 'value5'
         };
 
-        c = NX.clone(o);
+        NX.iterate([1,2,3,4,5], function(v, i, a) {
+            dest.push(v);
+        });
 
-        o().should.equal('original');
-        c().should.equal('original');
-
-        o = function() {
-            return 'replace';
-        }
-
-        o().should.equal('replace');
-        c().should.equal('original');
+        assert.equal(dest[0], 1, 'Test value=1');
+        assert.equal(dest[1], 2, 'Test value=2');
+        assert.equal(dest[2], 3, 'Test value=3');
+        assert.equal(dest[3], 4, 'Test value=4');
+        assert.equal(dest[4], 5, 'Test value=5');
 
     },
 
     // }}}
-    // {{{ test clone#pattern3
+    // {{{ test iterate#callbackFalse
 
-    'test clone#pattern3': function() {
+    'test iterate#callbackFalse': function() {
 
-        var dt, dt2;
-
-        dt = new Date();
-        dt2 = NX.clone(dt);
-
-        dt.getMilliseconds().should.equal(dt2.getMilliseconds());
-        dt2.setMilliseconds(500);
-        dt.getMilliseconds().should.not.equal(dt2.getMilliseconds());
-    },
-
-    // }}}
-    // {{{ test clone#pattern4
-
-    'test clone#pattern4': function() {
-
-        var o, c;
-
-        o = [1,2,3];
-        c = NX.clone(o);
-
-        o[0].should.equal(1);
-        o[1].should.equal(2);
-        o[2].should.equal(3);
-
-        c[0].should.equal(1);
-        c[1].should.equal(2);
-        c[2].should.equal(3);
-
-        o.push(4);
-
-        o.length.should.equal(4);
-        c.length.should.equal(3);
-
-    },
-
-    // }}}
-    // {{{ test clone#pattern5
-
-    'test clone#pattern5': function() {
-
-        var o, c;
-
-        o = {
-            cn: [{
-                tag: 'a'
-            },{
-                tag: 'span'
-            }]
+        var dest = {};
+        var src = {
+            key1: 'value1',
+            key2: 'value2',
+            key3: 'value3',
+            key4: 'value4',
+            key5: 'value5'
         };
-        o.obj = o.cn;
 
-        c = NX.clone(o);
+        NX.iterate(src, function(key, v, o) {
+            return false;
+        });
 
-        o.cn[0].tag.should.equal('a');
-        o.cn[1].tag.should.equal('span');
-
-        c.cn[0].tag.should.equal('a');
-        c.cn[1].tag.should.equal('span');
-
-        o.obj[0].tag.should.equal('a');
-        o.obj[1].tag.should.equal('span');
-
-        c.obj[0].tag.should.equal('a');
-        c.obj[1].tag.should.equal('span');
-
-        c.cn.push({tag: 'div'});
-
-        o.cn.length.should.equal(2);
-        c.cn.length.should.equal(3);
-
-        o.obj.length.should.equal(2);
-        c.obj.length.should.equal(2);
+        assert.equal(dest.key1, undefined, 'Test key=key1 value=undefined');
+        assert.equal(dest.key2, undefined, 'Test key=key2 value=undefined');
+        assert.equal(dest.key3, undefined, 'Test key=key3 value=undefined');
+        assert.equal(dest.key4, undefined, 'Test key=key4 value=undefined');
+        assert.equal(dest.key5, undefined, 'Test key=key5 value=undefined');
 
     },
 
     // }}}
-    // {{{ test clone#pattern6
+    // {{{ test moduleCacheClear#pattern1
 
-    'test clone#pattern6': function() {
+    'test moduleCacheClear#pattern1': function() {
 
-        var c;
+        var filename = __dirname + '/shared/req1.js';
 
-        c = NX.clone();
-        assert.equal(c, undefined);
+        var src = [
+            'module.exports = {',
+            '    foo: "bar"',
+            '};'
+        ].join('');
 
-        c = NX.clone(null);
-        assert.equal(c, null);
+        // ファイル書き込み
+        NX.Fs.writeFileSync(filename, src);
 
-        c = NX.clone('');
-        assert.equal(c, '');
+        var o = require(filename);
 
-    },
+        o.foo.should.equal('bar');
 
-    // }}}
-    // {{{ test emptyFn#pattern1
+        var src = [
+            'module.exports = {',
+            '    foo: "bar2"',
+            '};'
+        ].join('');
 
-    'test emptyFn#pattern1': function() {
+        // ファイル書き込み
+        NX.Fs.writeFileSync(filename, src);
 
-        var ret;
+        var o = require(filename);
 
-        ret = NX.emptyFn();
+        o.foo.should.equal('bar');
 
-        assert.equal(ret, undefined);
+        var stat = NX.Fs.statSync(filename);
 
-    },
+        NX.moduleCacheClear(filename, stat.mtime);
+
+        var o = require(filename);
+
+        o.foo.should.equal('bar2');
+
+        NX.Fs.unlinkSync(filename);
+
+    }
 
     // }}}
 
