@@ -4,7 +4,8 @@ NODE = node
 TEST = expresso
 TESTS = test/NX/*.test.js \
 		test/Array/*.test.js \
-		test/Date/*.test.js
+		test/Date/*.test.js \
+		test/Function/*.test.js
 
 PREFIX = /usr/local
 LIB_PREFIX = $(HOME)/.node_libraries
