@@ -7,6 +7,7 @@ TESTS = test/NX/*.test.js \
 		test/Date/*.test.js \
 		test/Error/*.test.js \
 		test/Function/*.test.js \
+		test/Loader/*.test.js \
 		test/Number/*.test.js \
 		test/String/*.test.js \
 		test/Object/*.test.js \
