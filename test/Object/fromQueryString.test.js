@@ -79,17 +79,17 @@ module.exports = {
 
         try{
 
+            NX.setLocale('en');
             ret = NX.Object.fromQueryString("=&bar=2", true);
 
         } catch(e) {
 
-// TODO クラスシステム実装後解除
-//            e.sourceClass.should.equal('NX.Object');
-//            e.sourceMethod.should.equal('fromQueryString');
-//            e.queryString.should.equal('=&bar=2');
-//            e.recursive.should.equal(true);
-//            e.msg.should.equal('Malformed query string given, failed parsing name from "="');
-//            e.message.should.equal('Malformed query string given, failed parsing name from "="');
+            e.sourceClass.should.equal('NX.Object');
+            e.sourceMethod.should.equal('fromQueryString');
+            e.queryString.should.equal('=&bar=2');
+            e.recursive.should.equal(true);
+            e.msg.should.equal('Malformed query string given, failed parsing name from "="');
+            e.message.should.equal('Malformed query string given, failed parsing name from "="');
 
         }
     }
