@@ -21,7 +21,7 @@ module.exports = {
 
     'test moduleCacheClear#pattern1': function() {
 
-        var filename = __dirname + '/shared/req1.js';
+        var filename = require('path').normalize(__dirname + '/../shared/req1.js');
 
         var src = [
             'module.exports = {',
@@ -30,7 +30,7 @@ module.exports = {
         ].join('');
 
         // ファイル書き込み
-        NX.Fs.writeFileSync(filename, src);
+        require('fs').writeFileSync(filename, src);
 
         var o = require(filename);
 
@@ -43,13 +43,13 @@ module.exports = {
         ].join('');
 
         // ファイル書き込み
-        NX.Fs.writeFileSync(filename, src);
+        require('fs').writeFileSync(filename, src);
 
         var o = require(filename);
 
         o.foo.should.equal('bar');
 
-        var stat = NX.Fs.statSync(filename);
+        var stat = require('fs').statSync(filename);
 
         NX.moduleCacheClear(filename, stat.mtime);
 
@@ -57,7 +57,7 @@ module.exports = {
 
         o.foo.should.equal('bar2');
 
-        NX.Fs.unlinkSync(filename);
+        require('fs').unlinkSync(filename);
 
     }
 

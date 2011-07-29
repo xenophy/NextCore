@@ -5,6 +5,7 @@ TEST = expresso
 TESTS = test/NX/*.test.js \
 		test/Array/*.test.js \
 		test/Date/*.test.js \
+		test/Error/*.test.js \
 		test/Function/*.test.js \
 		test/Number/*.test.js \
 		test/String/*.test.js \
