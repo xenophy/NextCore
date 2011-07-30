@@ -35,6 +35,19 @@ module.exports = {
     },
 
     // }}}
+    // {{{ 'test create#pattern2'
+
+    'test create#pattern2': function() {
+
+        NX.ClassManager.create('cls_create_pattern2');
+
+
+
+
+
+    }
+
+    // }}}
 
 };
 
