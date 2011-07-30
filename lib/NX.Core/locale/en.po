@@ -17,3 +17,9 @@ msgstr "Malformed query string given, failed parsing name from "{0}""
 #: NX.Error.prototype.name line 16
 msgid "(No description provided)"
 msgstr "(No description provided)"
+
+#: NX.ClassManager.create line 20
+msgid "Invalid class name '{0}' specified, must be a non-empty string"
+msgstr "Invalid class name '{0}' specified, must be a non-empty string"
+
+
