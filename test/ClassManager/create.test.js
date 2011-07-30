@@ -40,10 +40,41 @@ module.exports = {
     'test create#pattern2': function() {
 
         NX.ClassManager.create('cls_create_pattern2');
+        cls_create_pattern2.should.be.ok;
 
+    },
 
+    // }}}
+    // {{{ 'test create#pattern3'
 
+    'test create#pattern3': function(beforeExit) {
 
+        var trace = false;
+
+        NX.ClassManager.create('cls_create_pattern3', {}, function() {
+            trace = true;
+        });
+
+        beforeExit(function() {
+            trace.should.be.ok;
+            cls_create_pattern3.should.be.ok;
+        });
+
+    },
+
+    // }}}
+    // {{{ 'test create#pattern4'
+
+    'test create#pattern4': function(beforeExit) {
+
+        NX.ClassManager.create('cls_create_pattern4', {
+            alternateClassName: 'alt_create_pattern4'
+        });
+
+        beforeExit(function() {
+            cls_create_pattern4.should.be.ok;
+            alt_create_pattern4.should.be.ok;
+        });
 
     }
 
