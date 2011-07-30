@@ -22,3 +22,11 @@ msgstr "(記述がありません)"
 msgid "Invalid class name '{0}' specified, must be a non-empty string"
 msgstr "無効なクラス名 '{0}'が指定されました。空ではない文字列でなければなりません。"
 
+#: NX.ClassManager.parseNamespace line 18
+msgid "Invalid namespace, must be a string"
+msgstr "無効な名前空間です。文字列で指定してください。"
+
+#: NX.ClassManager.postprocessor.alternateClassName line 31
+msgid "Invalid alternate of: '{0}' for class: '{1}'; must be a valid string"
+msgstr "'{1}'クラスの別名として無効な別名'{0}'が指定されました。別名は文字列で指定してください。"
+

@@ -22,14 +22,12 @@ module.exports = {
     'test create#pattern1': function() {
 
         try {
-
             NX.setLocale('en');
             NX.ClassManager.create();
-
         } catch(e) {
-
+            e.sourceClass.should.equal("NX");
+            e.sourceMethod.should.equal("define");
             e.msg.should.equal("Invalid class name 'undefined' specified, must be a non-empty string");
-
         }
 
     },
@@ -39,8 +37,8 @@ module.exports = {
 
     'test create#pattern2': function() {
 
-        NX.ClassManager.create('cls_create_pattern2');
-        cls_create_pattern2.should.be.ok;
+        NX.ClassManager.create('cls_NX_ClassManager_create_pattern2');
+        cls_NX_ClassManager_create_pattern2.should.be.ok;
 
     },
 
@@ -51,13 +49,13 @@ module.exports = {
 
         var trace = false;
 
-        NX.ClassManager.create('cls_create_pattern3', {}, function() {
+        NX.ClassManager.create('cls_NX_ClassManager_create_pattern3', {}, function() {
             trace = true;
         });
 
         beforeExit(function() {
             trace.should.be.ok;
-            cls_create_pattern3.should.be.ok;
+            cls_NX_ClassManager_create_pattern3.should.be.ok;
         });
 
     },
@@ -67,16 +65,58 @@ module.exports = {
 
     'test create#pattern4': function(beforeExit) {
 
-        NX.ClassManager.create('cls_create_pattern4', {
-            alternateClassName: 'alt_create_pattern4'
+        NX.ClassManager.create('cls_NX_ClassManager_create_pattern4', {
+            alternateClassName: 'alt_NX_ClassManager_create_pattern4'
         });
 
         beforeExit(function() {
-            cls_create_pattern4.should.be.ok;
-            alt_create_pattern4.should.be.ok;
+            cls_NX_ClassManager_create_pattern4.should.be.ok;
+            alt_NX_ClassManager_create_pattern4.should.be.ok;
         });
 
-    }
+    },
+
+    // }}}
+    // {{{ 'test create#pattern5'
+
+    'test create#pattern5': function(beforeExit) {
+
+        var trace, trace2;
+
+        NX.ClassManager.registerPostprocessor('postprocessor_NX_ClassManager_create_pattern5', function() {
+            trace = true;
+        }, true);
+
+        NX.ClassManager.create('cls_NX_ClassManager_create_pattern5', {
+            postprocessors: ['postprocessor_NX_ClassManager_create_pattern5', function() {
+                trace2 = true;
+            }]
+        });
+
+        beforeExit(function() {
+            trace.should.be.ok;
+            trace2.should.be.ok;
+        });
+
+    },
+
+    // }}}
+    // {{{ 'test create#pattern6'
+
+    'test create#pattern6': function(beforeExit) {
+
+        try {
+            NX.setLocale('en');
+            NX.ClassManager.create('cls_NX_ClassManager_create_pattern6', {
+                alternateClassName: [{}]
+            });
+        } catch(e) {
+            e.sourceClass.should.equal("NX");
+            e.sourceMethod.should.equal("define");
+            e.msg.should.equal("Invalid alternate of: '[object Object]' for class: 'cls_NX_ClassManager_create_pattern6'; must be a valid string")
+        }
+
+    },
 
     // }}}
 

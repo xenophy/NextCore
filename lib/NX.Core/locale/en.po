@@ -22,4 +22,11 @@ msgstr "(No description provided)"
 msgid "Invalid class name '{0}' specified, must be a non-empty string"
 msgstr "Invalid class name '{0}' specified, must be a non-empty string"
 
+#: NX.ClassManager.parseNamespace line 18
+msgid "Invalid namespace, must be a string"
+msgstr "Invalid namespace, must be a string"
+
+#: NX.ClassManager.postprocessor.alternateClassName line 31
+msgid "Invalid alternate of: '{0}' for class: '{1}'; must be a valid string"
+msgstr "Invalid alternate of: '{0}' for class: '{1}'; must be a valid string"
 
