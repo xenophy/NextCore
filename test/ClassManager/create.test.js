@@ -150,6 +150,25 @@ module.exports = {
 
         cls.foo().should.equal('bar');
 
+        var org = NX.log;
+        var trace;
+
+        NX.log = function(msg) {
+            msg.should.equal("[NX.ClassManager] Overriding existing alias: 'alias_NX_ClassManager_create_pattern8' of: 'cls_NX_ClassManager_create_pattern8' with: 'cls_NX_ClassManager_create_pattern8_2'. Be sure it's intentional.");
+        }
+
+        NX.setLocale('en');
+        NX.ClassManager.create('cls_NX_ClassManager_create_pattern8_2', {
+            alias: 'alias_NX_ClassManager_create_pattern8',
+            foo: function() {
+                return 'bar';
+            }
+        });
+
+        NX.ClassManager.setAlias('cls_NX_ClassManager_create_pattern8_2', 'alias_NX_ClassManager_create_pattern8');
+
+        NX.log = org;
+
     },
 
     // }}}
