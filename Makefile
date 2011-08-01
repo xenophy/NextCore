@@ -5,6 +5,7 @@ TEST = expresso
 TESTS = test/NX/*.test.js \
 		test/Array/*.test.js \
 		test/Base/*.test.js \
+		test/Class/*.test.js \
 		test/ClassManager/*.test.js \
 		test/Date/*.test.js \
 		test/Error/*.test.js \
@@ -24,7 +25,7 @@ test:
 	@mkdir node_modules/NX
 	@cp -Rf ./lib/NX.Core node_modules
 	@NODE_ENV=test $(TEST) \
-		-I lib -q \
+	 -I lib -q \
 		$(TEST_FLAGS) $(TESTS)
 	@rm -Rf node_modules
 
