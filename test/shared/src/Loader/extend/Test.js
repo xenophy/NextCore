@@ -1,4 +1,5 @@
 
+
 NX.define('My.extend.Test', {
     foo: function() {
         return 'My.extend.Test.foo';
@@ -7,6 +8,7 @@ NX.define('My.extend.Test', {
         return 'My.extend.Test.bar';
     }
 });
+
 
 
 

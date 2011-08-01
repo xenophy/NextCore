@@ -50,10 +50,13 @@ module.exports = {
             }
         });
 
-        var ret = NX.Loader.require('My.extend.Test2');
+//        var ret = NX.Loader.require('My.extend.Test2');
 
-        //var cls = NX.create('My.extend.Test2');
-//        cls = new My.extend.Test2();
+        var cls = NX.create('My.extend.Test2');
+        cls = new My.extend.Test2();
+        cls.foo().should.equal('My.extend.Test2.foo');
+        cls.bar().should.equal('My.extend.Test.bar');
+
     }
 
     // }}}
