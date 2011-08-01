@@ -50,12 +50,28 @@ module.exports = {
             }
         });
 
-//        var ret = NX.Loader.require('My.extend.Test2');
-
         var cls = NX.create('My.extend.Test2');
-        cls = new My.extend.Test2();
         cls.foo().should.equal('My.extend.Test2.foo');
         cls.bar().should.equal('My.extend.Test.bar');
+
+    },
+
+    // }}}
+    // {{{ test require#pattern3
+
+    'test require#pattern3': function() {
+
+        NX.Loader.setConfig({
+            enabled: true,
+            paths: {
+                'My': __dirname + '/../shared/src/Loader/'
+            }
+        });
+
+        var cls = NX.create('My.extend2.Test3');
+        cls.foo().should.equal('My.extend2.Test3.foo');
+        cls.bar().should.equal('My.extend2.Test2.bar');
+        cls.baz().should.equal('My.extend2.Test.baz');
 
     }
 
