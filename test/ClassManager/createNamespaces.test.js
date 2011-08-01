@@ -40,9 +40,34 @@ module.exports = {
 
         NX.ClassManager.createNamespaces('NX.unittest_dummy');
         NX.unittest_dummy.should.be.ok;
+        NX.ClassManager.namespaceParseCache.hasOwnProperty('NX.unittest_dummy').should.be.ok;
 
         NX.ClassManager.createNamespaces('NX.unittest.dummy');
-        NX.unittest.dummy.should.be.ok;
+        NX.unittest_dummy.should.be.ok;
+        NX.ClassManager.namespaceParseCache.hasOwnProperty('NX.unittest.dummy').should.be.ok;
+
+        NX.ClassManager.createNamespaces('NX.unittest.dummy');
+        NX.unittest_dummy.should.be.ok;
+        NX.ClassManager.namespaceParseCache.hasOwnProperty('NX.unittest.dummy').should.be.ok;
+
+    },
+
+    // }}}
+    // {{{ test createNamespaces#pattern3
+
+    'test createNamespaces#pattern3': function() {
+
+        NX.ClassManager.createNamespaces('NXUT.unittest.dummy');
+        NXUT.unittest.dummy.should.be.ok;
+        NX.ClassManager.namespaceParseCache.hasOwnProperty('NXUT.unittest.dummy').should.be.ok;
+
+        NX.ClassManager.createNamespaces('NXUT.unittest.dummy');
+        NXUT.unittest.dummy.should.be.ok;
+        NX.ClassManager.namespaceParseCache.hasOwnProperty('NXUT.unittest.dummy').should.be.ok;
+
+        NX.ClassManager.createNamespaces('NXUT2.unittest.dummy');
+        NXUT2.unittest.dummy.should.be.ok;
+        NX.ClassManager.namespaceParseCache.hasOwnProperty('NXUT2.unittest.dummy').should.be.ok;
 
     }
 
