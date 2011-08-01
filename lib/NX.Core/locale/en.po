@@ -34,6 +34,14 @@ msgstr "Invalid alternate of: '{0}' for class: '{1}'; must be a valid string"
 msgid "Invalid alias of: '{0}' for class: '{1}'; must be a valid string"
 msgstr "Invalid alias of: '{0}' for class: '{1}'; must be a valid string"
 
+#: NX.ClassManager.instantiate line 25
+msgid "Invalid class name or alias '{0}' specified, must be a non-empty string"
+msgstr "Invalid class name or alias '{0}' specified, must be a non-empty string"
+
+#: NX.ClassManager.instantiate line 79
+msgid "Invalid class name or alias '{0}' defined, must be a non-empty string"
+msgstr "Invalid class name or alias '{0}' defined, must be a non-empty string"
+
 #: NX.ClassManager.setAlias line 33
 msgid "[NX.ClassManager] Overriding existing alias: '{0}' of: '{1}' with: '{2}'. Be sure it's intentional."
 msgstr "[NX.ClassManager] Overriding existing alias: '{0}' of: '{1}' with: '{2}'. Be sure it's intentional."
