@@ -119,6 +119,62 @@ module.exports = {
     },
 
     // }}}
+    // {{{ 'test create#pattern7'
+
+    'test create#pattern7': function(beforeExit) {
+
+        NX.ClassManager.create('cls_NX_ClassManager_create_pattern7', {
+            singleton: true,
+            foo: function() {
+                return 'bar';
+            }
+        });
+
+        cls_NX_ClassManager_create_pattern7.foo().should.equal('bar');
+
+    },
+
+    // }}}
+    // {{{ 'test create#pattern8'
+
+    'test create#pattern8': function(beforeExit) {
+
+        NX.ClassManager.create('cls_NX_ClassManager_create_pattern8', {
+            alias: 'alias_NX_ClassManager_create_pattern8',
+            foo: function() {
+                return 'bar';
+            }
+        });
+
+        var cls = NX.create('alias_NX_ClassManager_create_pattern8');
+
+        cls.foo().should.equal('bar');
+
+    },
+
+    // }}}
+    // {{{ 'test create#pattern9'
+
+    'test create#pattern9': function(beforeExit) {
+
+        try {
+
+            NX.setLocale('en');
+            NX.ClassManager.create('cls_NX_ClassManager_create_pattern9', {
+                alias: {}
+            });
+
+        } catch(e) {
+
+            e.sourceClass.should.equal("NX");
+            e.sourceMethod.should.equal("define");
+            e.msg.should.equal("Invalid alias of: '[object Object]' for class: 'cls_NX_ClassManager_create_pattern9'; must be a valid string")
+
+        }
+
+    }
+
+    // }}}
 
 };
 

@@ -30,3 +30,8 @@ msgstr "Invalid namespace, must be a string"
 msgid "Invalid alternate of: '{0}' for class: '{1}'; must be a valid string"
 msgstr "Invalid alternate of: '{0}' for class: '{1}'; must be a valid string"
 
+#: NX.ClassManager.postprocessor.alias line 28
+msgid "Invalid alias of: '{0}' for class: '{1}'; must be a valid string"
+msgstr "Invalid alias of: '{0}' for class: '{1}'; must be a valid string"
+
+
