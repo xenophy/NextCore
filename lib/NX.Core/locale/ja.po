@@ -42,8 +42,15 @@ msgstr "無効なクラス名、または無効なエイリアス'{0}'が指定�
 msgid "Invalid class name or alias '{0}' defined, must be a non-empty string"
 msgstr "Invalid class name or alias '{0}' defined, must be a non-empty string"
 
-
 #: NX.ClassManager.setAlias line 33
 msgid "[NX.ClassManager] Overriding existing alias: '{0}' of: '{1}' with: '{2}'. Be sure it's intentional."
 msgstr "[NX.ClassManager] '{2}'クラスの'{0}'は、存在するエイリアス'{1}'を上書きします。意図的に上書きしようとしていることを確認してください。"
+
+#: NX.Base.prototype.callOverridden line 20
+msgid "Attempting to call a protected method from the public scope, which is not allowed"
+msgstr "パブリックスコープから、許可されていないprotectedメソッドを呼び出そうとしました。"
+
+#: NX.Base.prototype.callOverridden line 30
+msgid "this.callOverridden was called in '{0}' but this method has never been overridden"
+msgstr "this.callOverridden は、'{0}'によって呼び出されました。しかし、このメソッドはオーバーライドされていません。"
 

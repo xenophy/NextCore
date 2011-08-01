@@ -46,3 +46,11 @@ msgstr "Invalid class name or alias '{0}' defined, must be a non-empty string"
 msgid "[NX.ClassManager] Overriding existing alias: '{0}' of: '{1}' with: '{2}'. Be sure it's intentional."
 msgstr "[NX.ClassManager] Overriding existing alias: '{0}' of: '{1}' with: '{2}'. Be sure it's intentional."
 
+#: NX.Base.prototype.callOverridden line 20
+msgid "Attempting to call a protected method from the public scope, which is not allowed"
+msgstr "Attempting to call a protected method from the public scope, which is not allowed"
+
+#: NX.Base.prototype.callOverridden line 30
+msgid "this.callOverridden was called in '{0}' but this method has never been overridden"
+msgstr "this.callOverridden was called in '{0}' but this method has never been overridden"
+
