@@ -73,6 +73,27 @@ module.exports = {
         cls.bar().should.equal('My.extend2.Test2.bar');
         cls.baz().should.equal('My.extend2.Test.baz');
 
+    },
+
+    // }}}
+    // {{{ test require#pattern4
+
+    'test require#pattern4': function() {
+
+        NX.Loader.setConfig({
+            enabled: true,
+            paths: {
+                'My': __dirname + '/../shared/src/Loader/'
+            }
+        });
+
+        var cls = NX.create('My.mixins.Test');
+
+        cls.foo().should.equal('My.mixins.Test.foo');
+        cls.bar().should.equal('My.mixins.Test.bar');
+        cls.mix1().should.equal('My.mixins.Mix1.mix1');
+        cls.mix2().should.equal('My.mixins.Mix2.mix2');
+
     }
 
     // }}}
