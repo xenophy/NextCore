@@ -94,9 +94,45 @@ module.exports = {
         cls.mix1().should.equal('My.mixins.Mix1.mix1');
         cls.mix2().should.equal('My.mixins.Mix2.mix2');
 
+    },
+
+    // }}}
+    // {{{ test require#pattern5
+
+    'test require#pattern5': function() {
+
+        NX.Loader.setConfig({
+            enabled: true,
+            paths: {
+                'My': __dirname + '/../shared/src/Loader/'
+            }
+        });
+
+        var cls = NX.create('My.requires.Test');
+        cls.foo().should.equal('My.requires.Req1.req1');
+        cls.bar().should.equal('My.requires.Req2.req2');
+
+    },
+
+    // }}}
+    // {{{ test require#pattern6
+
+    'test require#pattern6': function() {
+
+        NX.Loader.setConfig({
+            enabled: true,
+            paths: {
+                'My': __dirname + '/../shared/src/Loader/'
+            }
+        });
+
+        var cls = NX.create('My.requires2.Test');
+        cls.foo().should.equal('My.requires2.Req1.req1');
+
     }
 
     // }}}
+
 
 };
 
