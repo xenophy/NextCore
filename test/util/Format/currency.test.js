@@ -8,7 +8,7 @@
 
 // {{{ requires
 
-require('NX.Core');
+require('nx-core');
 require('should');
 assert = require('assert');
 

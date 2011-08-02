@@ -23,7 +23,7 @@ test:
 	@rm -Rf node_modules
 	@mkdir node_modules
 	@mkdir node_modules/NX
-	@cp -Rf ./lib/NX.Core node_modules
+	@cp -Rf ./lib/nx-core node_modules
 	@NODE_ENV=test $(TEST) \
 	 -I lib -q \
 		$(TEST_FLAGS) $(TESTS)
