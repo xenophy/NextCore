@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.7 en\n"
+"Project-Id-Version: 0.1 en\n"
 "Report-Msgid-Bugs-To: info@xenophy.com\n"
 "POT-Creation-Date: 2011-07-14 03:32+0900\n"
 "PO-Revision-Date: 2011-07-29 10:43+0900\n"
