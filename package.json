@@ -4,6 +4,6 @@
     "keywords": ["Functions", "Class", "Loader", "NextJS", "Ext JS"],
     "version" : "0.1.5",
     "author" : "Kazuhiro Kotsutsumi <kotsutsumi@xenophy.com>",
-    "repository" : "git@github.com:xenophy/NextCore.git",
+    "repository" : "git://github.com/xenophy/NextCore.git",
     "main" : "./lib/nx-core"
 }
