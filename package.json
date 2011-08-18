@@ -1,5 +1,5 @@
 {
-    "name" : "next-core",
+    "name" : "nx-core",
     "description" : "JavaScript Class System and Base functions.",
     "keywords": ["Functions", "Class", "Loader", "NextJS", "Ext JS"],
     "version" : "0.1.6",
