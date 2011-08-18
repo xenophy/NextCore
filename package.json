@@ -1,8 +1,8 @@
 {
-    "name" : "nx-core",
+    "name" : "next-core",
     "description" : "JavaScript Class System and Base functions.",
     "keywords": ["Functions", "Class", "Loader", "NextJS", "Ext JS"],
-    "version" : "0.1.5",
+    "version" : "0.1.6",
     "author" : "Kazuhiro Kotsutsumi <kotsutsumi@xenophy.com>",
     "repository" : "git://github.com/xenophy/NextCore.git",
     "main" : "./lib/nx-core"
