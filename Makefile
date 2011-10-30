@@ -3,7 +3,8 @@
 SHELL := /bin/bash
 
 test:
-        @./test/run.js
+	@./test/run.js
+
 
 .PHONY: test
 
